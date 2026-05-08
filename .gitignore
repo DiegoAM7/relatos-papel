@@ -10,3 +10,4 @@ dist
 *.synctex.gz
 .idea
 pnpm-lock.yaml
+package-lock.json

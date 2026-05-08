@@ -28,6 +28,10 @@ export const CartProvider = ({ children }) => {
         );
     };
 
+    const removeItemFromCart = (id) => {
+        setCartItems((prev) => prev.filter((item) => item.id !== id));
+    };
+
     const clearCart = () => setCartItems([]);
 
     const total = cartItems.reduce(
@@ -39,6 +43,7 @@ export const CartProvider = ({ children }) => {
         cartItems,
         addToCart,
         removeFromCart,
+        removeItemFromCart,
         clearCart,
         total,
     };

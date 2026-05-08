@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import useCart from "../context/UseCart";
+import useCart from "../components/context/UseCart";
 import { books } from "../mocks/books";
 
 const BookPage = () => {

@@ -1,10 +1,38 @@
+import { Link, useParams } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
+import useCart from "../components/context/UseCart";
+import { books } from "../mocks/books";
+
 const BookPage = () => {
-  return (
-    <section>
-      <h1>Detalle de libro</h1>
-      <p>Vista de detalle en construccion.</p>
-    </section>
-  );
+    const { id } = useParams();
+    const { addToCart } = useCart();
+    const book = books.find((item) => item.id === Number(id));
+
+    if (!book) {
+        return <p>Libro no encontrado.</p>;
+    }
+
+    return (
+        <>
+            <Link to="/home" className="btn outline-solid btn--ghost">
+                <ArrowLeft />
+                Volver al catalogo
+            </Link>
+            <article className="book-detail">
+                <img src={book.image} alt={book.title} />
+                <div>
+                    <h1>{book.title}</h1>
+                    <p>{book.description}</p>
+                    <p>Categoria: {book.category}</p>
+                    <p>Rating: {book.rating}</p>
+                    <strong>${book.price.toFixed(2)}</strong>
+                    <button type="button" className="btn" onClick={() => addToCart(book)}>
+                        Agregar al carrito
+                    </button>
+                </div>
+            </article>
+        </>
+    );
 };
 
 export default BookPage;

@@ -1,0 +1,10 @@
+node_modules
+dist
+.vscode
+.DS_Store
+.env
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.synctex.gz

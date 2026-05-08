@@ -1,8 +1,11 @@
-import {Link} from 'react-router-dom';
-import useAuth from '../hooks/useAuth.js';
+import { Link } from "react-router-dom";
+import useAuth from "../../context/useAuth";
+import useCart from "../../context/useCart";
 
 const Navbar = () => {
-    const {isAuthenticated, logout} = useAuth();
+    const { isAuthenticated, logout } = useAuth();
+    const { cartItems } = useCart();
+    const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
     return (
         <header className="navbar">
@@ -13,7 +16,7 @@ const Navbar = () => {
                 <nav className="navbar__links">
                     <Link to="/home">Catalogo</Link>
                     <Link to="/profile">Perfil</Link>
-                    <Link to="/checkout">Checkout</Link>
+                    <Link to="/checkout">Checkout ({totalItems})</Link>
                     {!isAuthenticated ? (
                         <Link to="/login">Ingresar</Link>
                     ) : (

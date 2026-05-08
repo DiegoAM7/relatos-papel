@@ -8,3 +8,5 @@ dist
 *.fls
 *.fdb_latexmk
 *.synctex.gz
+.idea
+pnpm-lock.yaml

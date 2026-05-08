@@ -1,12 +1,7 @@
-import './App.css';
+import AppRouter from './routes/AppRouter';
 
-function App() {
-  return (
-    <div className="container" style={{ padding: '3rem 0' }}>
-      <h1>Relatos de Papel</h1>
-      <p>Base estructural lista: estilos globales, layout y carpetas por feature.</p>
-    </div>
-  );
-}
+const App = () => {
+  return <AppRouter />;
+};
 
 export default App;

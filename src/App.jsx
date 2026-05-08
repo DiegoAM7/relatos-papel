@@ -1,6 +1,6 @@
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider } from './components/context/AuthContext';
 import { CartProvider } from './context/CartContext';
-import AppRouter from './routes/AppRouter';
+import AppRouter from './router/AppRouter';
 
 const App = () => {
     return (

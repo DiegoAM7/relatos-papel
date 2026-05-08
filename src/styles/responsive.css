@@ -1,29 +1,174 @@
-@media (max-width: 1024px) {
+/* =============================================================
+   Responsive — mobile-first overrides
+   ============================================================= */
+
+/* === Mobile: carrusel scroll-snap horizontal === */
+@media (max-width: 767px) {
   .book-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding-inline: var(--container-x);
+    margin-inline: calc(var(--container-x) * -1);
+    padding-bottom: 24px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-padding-inline: var(--container-x);
   }
 
+  .book-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .book-card {
+    scroll-snap-align: start;
+    flex: 0 0 75vw;
+    min-width: 75vw;
+  }
+
+  /* En mobile el botón Agregar siempre visible */
+  .book-card__add {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .book-card__media {
+    margin-bottom: 12px;
+  }
+
+  /* Hero apilado, imagen full-bleed abajo */
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .hero__media {
+    margin-inline: calc(var(--container-x) * -1);
+  }
+
+  .hero__media figcaption {
+    padding-inline: var(--container-x);
+  }
+
+  /* Section row reorder */
+  .section__head--row {
+    align-items: flex-start;
+  }
+
+  /* Footer stacked */
+  .footer__inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .footer__cols {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 24px;
+  }
+
+  .footer__legal {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Catálogo: cart drawer abajo */
   .home-layout {
     grid-template-columns: 1fr;
   }
-}
 
-@media (max-width: 640px) {
-  .book-grid {
-    grid-template-columns: 1fr;
+  .cart-drawer {
+    position: static;
   }
 
-  .navbar__content {
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
-  .navbar__links {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
+  /* Book detail apilado */
   .book-detail {
     grid-template-columns: 1fr;
+  }
+
+  /* Order item en mobile */
+  .order-item {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  /* Login menos padding */
+  .login-form,
+  .checkout-summary,
+  .profile-card,
+  .order-history {
+    padding: 32px 24px;
+  }
+}
+
+/* === Desktop: nav inline + grid 4 cols === */
+@media (min-width: 768px) {
+  .navbar__links {
+    display: flex;
+  }
+
+  .icon-btn--menu {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+
+  .book-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px var(--gutter);
+    row-gap: 64px;
+  }
+
+  /* Hero asimétrico: copy izquierda, imagen derecha más estrecha */
+  .hero__inner {
+    grid-template-columns: 1.35fr 0.85fr;
+    gap: 64px;
+    align-items: end;
+  }
+
+  .hero__media img {
+    aspect-ratio: 3 / 4;
+  }
+
+  /* Footer en columnas */
+  .footer__inner {
+    grid-template-columns: 1.1fr 1.6fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  /* Catálogo con drawer lateral */
+  .home-layout {
+    grid-template-columns: 1fr 320px;
+    gap: 56px;
+    align-items: start;
+  }
+
+  /* Book detail */
+  .book-detail {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 56px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .book-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .hero__inner {
+    grid-template-columns: 1.45fr 0.75fr;
+    gap: 80px;
+  }
+}
+
+/* === Reset legacy: el responsive viejo apilaba navbar en mobile, lo prevenimos === */
+@media (max-width: 640px) {
+  .navbar__content {
+    flex-direction: row;
+    gap: 12px;
   }
 }

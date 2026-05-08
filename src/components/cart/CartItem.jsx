@@ -1,4 +1,4 @@
-const CartItem = ({ item, onRemove }) => {
+const CartItem = ({ item, onRemoveOne, onDelete }) => {
     return (
         <div className="cart-item">
             <div>
@@ -7,9 +7,14 @@ const CartItem = ({ item, onRemove }) => {
                     {item.quantity} x ${item.price.toFixed(2)}
                 </p>
             </div>
-            <button type="button" onClick={() => onRemove(item.id)}>
-                Quitar
-            </button>
+            <div className="cart-item__actions">
+                <button type="button" onClick={() => onRemoveOne(item.id)}>
+                    Quitar 1
+                </button>
+                <button type="button" onClick={() => onDelete(item.id)}>
+                    Eliminar
+                </button>
+            </div>
         </div>
     );
 };
